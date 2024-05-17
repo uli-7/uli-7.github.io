@@ -1,0 +1,175 @@
+<!--
+ * @Author: Guan zizhan uli0214@outlook.com
+ * @Date: 2024-05-17 13:42:42
+ * @LastEditors: Guan zizhan uli0214@outlook.com
+ * @LastEditTime: 2024-05-17 17:04:15
+ * @FilePath: /uli-7.github.io/html/test0517.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../images/Wallnut.ico" rel="shortcut icon" type="image/x-icon">
+    <title>测试一下抽卡</title>
+    <style>
+        * {
+            /* 基础边框 */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            /* 居中 黑色 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0f0f0f;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container .card {
+            /* 位置 绝对中心 */
+            position: absolute;
+            width: 240px;
+            height: 316px;
+            /* 卡片背景色 */
+            background-color: #5c748b;
+            /* background-color: #5e5c8b; */
+            /* 边框圆角8px */
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(0, 0, 0, 0);
+            font-size: 8em;
+            font-weight: 700;
+            /* 边框10像素 黑色 0.1透明度 */
+            border: 10px solid rgba(0, 0, 0, 0.1);
+            /* 旋转延迟1秒内完成 */
+            transition: 1s;
+            /* 修改旋转中心 */
+            transform-origin: 50% 100%;
+            /* 卡片加滤镜 旋转色相 */
+            filter: hue-rotate(calc(var(--i) * 30deg));
+            /* 加点阴影 */
+            box-shadow: 0 15px 50px rgba(93, 61, 61, 0.1);
+            /* 文字不可选中 */
+            user-select: none;
+            /* 旋转后隐藏 */
+            /* backface-visibility: hidden; */
+        }
+
+        /* 将5号卡片置顶确保升起时在中间 */
+        .card:nth-of-type(5) {
+            z-index: 1;
+        }
+        .container:hover .card {
+            /* rotate 旋转5度 */
+            transform: rotate(calc(var(--i) * 3deg))
+                       /* translate 平移180像素 垂直方向 向上100像素 */
+                       translate(calc(var(--i) * 180px), -100px);
+            /* 鼠标移动时阴影也随之变化透明度 */
+            box-shadow: 0 15px 50px rgba(93, 61, 61, 0.8);
+            /* 字体颜色在鼠标移动时变为半透明 */
+            color: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            perspective: 1000px;
+        }
+        /* 找到容器被激活 但card没有被激活的元素 暗淡颜色 */
+        .container:active .card:not(:active) {
+            background-color: rgba(44, 44, 44, 0.9);
+        }
+        /* 移动到卡片上时的特效 */
+        .container .card:hover {
+            transition: 0.7s;
+            /* 鼠标移动时 上升50像素 */
+            translate: calc(var(--i) * 10px) -50px;
+            /* 将鼠标移动的层级调高 */
+            z-index: 2;
+        }
+
+        /* 点击时将卡片旋转180度 升高10px*/
+        .container .card:active {
+            translate: 0 -100px;
+            transition: 1.5s;
+            /* color: rgba(0, 0, 0, 0); */
+            transform: rotateY(180deg);
+            filter: none;
+            z-index: 3;
+        } 
+        /* 将图片初始化 */
+        .back {
+            border-radius: 4px;
+            /* 不可选中 */
+            user-select: none;  
+            width: 220px;
+            /* 居中且隐藏 */
+            position: absolute;
+            visibility: hidden;
+            /* 图片翻面 */
+            transform: scaleX(-1);
+        }
+        /* 文字设置中心 */
+        .front {
+            position: absolute;
+        }
+        /* 设置提示 并在鼠标移动后消失 */
+        .prompt {
+            color: rgba(0, 0, 0, .65);
+            position: absolute;
+            font-size: 28px;
+            font-weight: 500;
+        }
+        .container:hover .prompt {
+            visibility: hidden;
+        }
+        /* 点击card时 将图片在2秒内显现 临时取消滤镜 */
+        .card:active .back {
+            user-select: none;  
+            visibility: visible;
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            0%{
+                /* 0%时不透明度为0 */
+                opacity: 0;
+            }
+            100%{
+                /* 100%时不透明度为1 不透明 */
+                opacity: 1;
+            }
+        }
+        /* 点击卡片后将文字逐渐透明 */
+        .card:active .front {
+            transition: 1s;
+            color: rgba(0, 0, 0, 0);
+            /* width:0px */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" style="--i:-4"><span class="front">1</span><img class="back" src="../images/gougou/one.jpeg"></div>
+        <div class="card" style="--i:-3"><span class="front">2</span><img class="back" src="../images/gougou/two.jpeg"></div>
+        <div class="card" style="--i:-2"><span class="front">3</span><img class="back" src="../images/gougou/three.jpeg"></div>
+        <div class="card" style="--i:-1"><span class="front">4</span><img class="back" src="../images/gougou/four.jpeg"></div>
+        <div class="card" id="topCard" style="--i:0"><span class="front">5</span><span class="prompt">鼠标移动至此<br>长按选择卡片</span><img class="back" src="../images/gougou/five.jpeg"></div>
+        <div class="card" style="--i:1"><span class="front">6</span><img class="back" src="../images/gougou/six.jpeg"></div>
+        <div class="card" style="--i:2"><span class="front">7</span><img class="back" src="../images/gougou/seven.jpeg"></div>
+        <div class="card" style="--i:3"><span class="front">8</span><img class="back" src="../images/gougou/eight.jpeg"></div>
+        <div class="card" style="--i:4"><span class="front">9</span><img class="back" src="../images/gougou/nine.jpeg"></div>
+    </div>
+
+</body>
+</html>
