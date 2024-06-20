@@ -1,0 +1,520 @@
+/* 版心基础设置 */
+.container {
+    /* background-color: #ECECEC; */
+    /* height: 30px;  */ 
+    /* 版心不给高度和颜色 多版心可以共用 */
+    width: 1190px; /* 版心宽 */
+    margin: 0 auto;
+}
+
+
+/* #region 折叠 顶部导航条start */
+.topbar {
+    height: 30px;
+    background-color: #ECECEC;
+}
+.welcome {
+    /* 行内元素可以按文本处理 居中可以行高等于line-height */
+    height: 30px;
+    line-height: 30px; /* 垂直居中 */
+    /* font-size: 0;可以删除不同文本换行\n间距 */
+    font-size: 0;
+    color: #666666;
+}
+.welcome span,.welcome a {
+    /* 定义行高 */
+    font-size: 12px;
+}
+    /* 尚品汇欢迎您 */
+.welcome .hello {
+    margin-right: 28px;
+}
+.welcome .login {
+    /* margin-right: 10px; */
+    /* border盒子模型 实线在padding外面 在margin里面 */
+    padding-right: 10px;
+    border-right: 1px solid #666666;
+}
+.welcome .register {
+    padding-left: 10px;
+}
+        /* .welcome span:nth-of-type(1) {
+            margin-right: 28px;
+        }
+        .welcome a:nth-of-type(1) {
+            margin-right: 10px;
+        }
+        .welcome a:nth-of-type(2) {
+            margin-left: 10px;
+        } */
+.topbar_nav .list {
+    height: 30px;
+    line-height: 30px;
+}
+.topbar_nav .list li {
+    float: left;
+}
+.topbar_nav .list li a{
+    padding-right: 15px;
+    padding-left: 15px;
+    border-right: 1px solid #666666;
+}
+    /* 第一个和最后一个取消左右padding-left */
+.topbar_nav .list li:first-child a{
+    padding-left: 0px;
+}
+.topbar_nav .list li:last-child a{
+    padding-right: 0px;
+    border-right: none;
+}
+/* #endregion 顶部导航条end */
+
+
+/* #region 头部 start */
+.header {
+    height: 120px;
+    /* background: skyblue; */
+    /* line-height: 120px; */
+}
+.header .search form {
+    margin-top: 42px;
+    font-size: 0px;
+}
+.header .search input { 
+    height: 34px;
+    width: 508px;
+    border: 1px solid #DD302D;
+}
+.header .search button {
+    height: 36px;
+    width: 80px;
+    background: #DD302D;
+    vertical-align: top; /* 特殊属性 对齐方式不用基线对齐 */
+    background-image: url(../images/serch_icon.png); /* 按钮插入添加图标 */
+    background-repeat: no-repeat; /* 按钮图片不重复 */
+    background-position: 28px 6px; /* 按钮位置 */
+    padding: 0 28px;
+}
+
+/* #endregion 头部end */
+
+
+/* #region 主导航区 start */
+.main-nav {
+    height: 48px;
+    border-bottom: 1px solid #DD302D; /* 加一像素的底部边框 */
+}
+.main-nav .all-types {
+    width: 190px;
+    height: 48px;
+    background-color: #DD302D;
+    /* line-height: 48px; */
+    align-content: center; /* 垂直居中 */
+    text-align: center; /* 水平居中 */
+    color: white;  /* 字体白色 */
+    font-size: 16px; /* 字体大小 */
+}
+.main-nav-list {
+    height: 48px;
+    /* 垂直居中 */
+    /* line-height: 48px;  */
+}
+.main-nav-list::after {
+    /* main-nav-list 清除浮动 clearfix*/
+    content: "";
+    display: block;
+    clear: both;
+}
+.main-nav-list li {
+    float: left;  /* li左浮动 */
+    margin: 13px 10px 11.5px 10px; /* 上右下左间距 */
+    font-size: 16px; /* 字体大小 */
+}
+
+/* #endregion 主导航区 end */
+
+
+/* #region 主要内容区 start */
+.main-content {
+    /* 顶部距离 */
+    margin: 10px 0;
+}
+/* 左侧边栏 */
+.main-content .slide-nav {
+    height: 458px;
+    width: 190px;
+    background-color: #F4F4F4;
+    /* 相对定位 参考ul定位 */
+    position: relative;
+}
+.main-content .slide-nav li {
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    /* margin-left: 16px; */
+    /* 背景色可以填充padding 但不能填充margin */
+    padding-left: 16px;
+}
+.main-content .slide-nav li:nth-of-type(1){
+    /* 第一个li特殊处理 */
+    padding-top: 5px;
+}
+.main-content .slide-nav li:last-of-type {
+    /* 最后一个li特殊处理 */
+    padding-bottom: 5px;
+}
+.main-content .slide-nav li:hover {
+    /* 鼠标悬浮时变为红色 */
+    background-color: #DD302D;
+}
+.main-content .slide-nav li:hover>a {
+    /* 鼠标悬浮时a标签变白色 */
+    color: white;
+    /* 用子代选择器 避免后续二级菜单下的a变色 */
+}
+/* 左边栏二级菜单 */
+.second-menu {
+    width: 680px;
+    height: 458px;
+    background-color: white;
+    /* 开启绝对定位 参考第一个定位到祖先元素：li relative */
+    position: absolute; 
+    /* 定位移动的位置 */
+    top: 0px;
+    left: 190px;
+    padding-left: 20px;
+    /* 默认隐藏 */
+    display: none;
+}
+.second-menu dl {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+}
+.second-menu dl:first-child {
+    margin-top: 10px;
+}
+.second-menu dt {
+    /* 左浮动 留padding */
+    float: left;
+    padding-right: 10px;
+    /* dt宽高 */
+    width: 70px;
+    height: 20px;
+    /* 加粗 */
+    font-weight: bold;
+}
+.second-menu dt>a {
+    /* dt下的a用黑色 reset设置了a所以这里需要单独指定 */
+    color: #000000;
+}
+.second-menu dd {
+    /* 左浮动 */
+    float: left;
+}
+.second-menu dd a {
+    /* 画出padding和border左边线 */
+    padding: 0 10px;
+    border-left: 1px solid #666666;
+}
+.main-content .slide-nav li:hover .second-menu{
+    /* 鼠标悬浮时 second-menu出现 */
+    display: block;
+}
+
+/* 中间轮播图 */
+.main-content .banner {
+    height: 458px;
+    width: 690px;
+    margin: 0 10px;
+    /* background-color: #F4F4F4; */
+}
+
+/* 右侧边栏 */
+.main-content .slide-other {
+    height: 458px;
+    width: 290px;
+}
+
+.main-content .slide-other .message {
+    /* 右侧边栏 尚品快报 */
+    width: 260px;
+    height: 156px;
+    /* 盒子宽260+2*14 = 288 */
+    padding: 0 14px;
+    border: 1px solid #D9D9D9;
+
+}
+.slide-other .message .title {
+    font-size: 14px;
+    height: 38px;
+    line-height: 38px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.slide-other .message .title span {
+    /* 尚品快报字体大小 黑色 */
+    color: #000;
+    font-size: 14px;
+}
+.slide-other .message .title a {
+    /* 更多a标签字体 */
+    font-size: 12px;
+}
+
+.slide-other .message .ms-list li {
+    /* li设置高度和居中 */
+    /* width: 262px; */
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+}
+.slide-other .message .ms-list li:first-of-type {
+    margin-top: 4px;
+}
+
+/* 右侧边栏 其他导航图标 */
+.main-content .slide-other .other-nav {
+    /* 整个导航栏区域 */
+    width: 280px;
+    height: 258px;
+    margin-top: 10px;
+    /* 左右padding撑开5px 后续li撑开11px 一共16px */
+    padding: 16px 5px; 
+    /* background-color: sandybrown; */
+    /* 隐藏溢出、清除浮动、解除坍塌 */
+    /* overflow: hidden; */
+}
+.other-nav .other-nav-list  {
+    /* 导航栏内三行图标 */
+    width: 280px;
+    height: 70px;
+    /* 行间隔17px */
+    margin-bottom: 17px;
+    /* background-color: #fff; */
+}
+.other-nav-list li a {
+    /* 浮动 */
+    float: left;
+    /* 每行四个单独的图标 有跳转链接 */
+    width: 48px;
+    height: 70px;
+    margin: 0px 11px;
+    /* 修改字体黑色居中 */
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+}
+.other-nav-list .picture {
+    /* 将精灵图设置为背景 */
+    width: 48px;
+    height: 48px;
+    background-image: url(../images/精灵图-侧边功能.png);
+}
+/* calc计算 精灵图的位置 */
+.other-nav-list:nth-child(1) li:nth-child(1) .picture {
+    background-position: calc(-0*48px) calc(0*48px);
+}
+.other-nav-list:nth-child(1) li:nth-child(2) .picture {
+    background-position: calc(-1*48px) calc(0*48px);
+}
+.other-nav-list:nth-child(1) li:nth-child(3) .picture {
+    background-position: calc(-2*48px) calc(0*48px);
+}
+.other-nav-list:nth-child(1) li:nth-child(4) .picture {
+    background-position: calc(-3*48px) calc(0*48px);
+}
+
+.other-nav-list:nth-child(2) li:nth-child(1) .picture {
+    background-position: calc(-0*48px) calc(-1*48px);
+}
+.other-nav-list:nth-child(2) li:nth-child(2) .picture {
+    background-position: calc(-1*48px) calc(-1*48px);
+}
+.other-nav-list:nth-child(2) li:nth-child(3) .picture {
+    background-position: calc(-2*48px) calc(-1*48px);
+}
+.other-nav-list:nth-child(2) li:nth-child(4) .picture {
+    background-position: calc(-3*48px) calc(-1*48px);
+}
+
+.other-nav-list:nth-child(3) li:nth-child(1) .picture {
+    background-position: calc(-0*48px) calc(-2*48px);
+}
+.other-nav-list:nth-child(3) li:nth-child(2) .picture {
+    background-position: calc(-1*48px) calc(-2*48px);
+}
+.other-nav-list:nth-child(3) li:nth-child(3) .picture {
+    background-position: calc(-2*48px) calc(-2*48px);
+}
+.other-nav-list:nth-child(3) li:nth-child(4) .picture {
+    background-position: calc(-3*48px) calc(-2*48px);
+}
+
+/* #endregion 主要内容区 end */
+
+
+/* #region 秒杀区 start */
+.seckill div img {
+    /* 浮动 父元素清除浮动 */
+    float: left;
+    margin-right: 11px;
+    /* 鼠标悬浮时变为pointer手 暂时不加超链接 */
+    cursor: pointer;
+}
+.seckill div img:last-child {
+    margin-right: 0;
+}
+/* #endregion 秒杀区 end */
+
+
+/* #region 楼层区 start */
+.floor {
+    /* 顶部上一个区域的距离 */
+    margin-top: 48px;
+}
+.floor .floor-nav {
+    height: 30px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #DD302D;
+}
+.floor-name {
+    font-size: 20px;
+}
+.floor-nav-list {
+    font-size: 16px;
+    /* 居中 */
+    line-height: 30px;
+}
+.floor-nav-list li {
+    /* 浮动 父元素floor-nav-list 需要清除浮动 */
+    float: left;
+}
+.floor-nav-list li a {
+    /* 给a设置padding和边框 */
+    padding: 0px 10px;
+    border-right: 1px solid #666666;
+}
+.floor-nav-list li:first-child a {
+    /* 第一个元素左边设置为0 */
+    padding-left: 0;
+}
+.floor-nav-list li:last-child a {
+    /* 最后一个元素取消右边框 */
+    padding-right: 0px;
+    border-right: 0;
+}
+.floor-info .item {
+    /* div横向排布 */
+    float: left;
+    height: 432px;
+}
+.floor-info .item .item1-list{
+    margin-bottom: 30px;
+}
+.floor-info .item1 {
+    /* w=240-20*2 */
+    width: 190px;
+    background-color: #F4F4F4;
+    padding: 20px;
+    height: 392px;
+} 
+.floor-info .item1 li {
+    font-size: 16px;
+    /* 平行居中 */
+    text-align: center;
+    width: 90px;
+    height: 22px;
+    padding-bottom: 3.5px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.floor-info .item1 li:nth-child(3),.floor-info .item1 li:nth-child(4) {
+    /* 第三个第四个家上下margin撑开 */
+    margin: 14.4px 0;
+}
+.floor-info .item1 li:nth-child(2n-1) {
+    /* 奇数左浮动 */
+    float: left;
+}
+.floor-info .item1 li:nth-child(2n) {
+    /* 偶数右浮动 */
+    float: right;
+}
+
+.floor-info .item2 {
+    width: 340px;
+    /* 鼠标转换为手 */
+    cursor: pointer;
+}
+.floor-info .item3 img,
+.floor-info .item4 img,
+.floor-info .item5 img {
+    /* 并集选择器 */
+    width: 206px;
+    border-bottom: 1px solid #E2E2E2;
+    cursor: pointer;
+}
+.floor-info .item4 {
+    border-right: 1px solid #E2E2E2;
+    border-left: 1px solid #E2E2E2;
+}
+/* #endregion 楼层区 end */
+
+
+/* #region 页脚 start */
+.footer {
+    height: 440px;
+    background-color: #483E3E;
+    margin-top: 48px;
+    /* overflow: hidden; */
+}
+.footer .top-links {
+    border-bottom: 1px solid #584D4D;
+}
+.footer .top-links ul {
+    float: left;
+    margin: 48px 10px 22px 0;
+    width: 190px;
+    height: 176px;
+}
+.footer .top-links ul:last-child {
+    margin-right: 0;
+}
+.top-links li a {
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: left;
+    line-height: 22px;
+}
+/* 底部链接 */
+.footer .bottom-links {
+    width: 1190px;
+    margin-top: 47px;
+    /* 只能将行内数据居中或者纯文本居中 不能居中块 */
+    text-align: center;
+}
+.bottom-links-list {
+    /* 将块改为行内 就可以居中了 */
+    display: inline-block;
+    vertical-align: middle;
+}
+.bottom-links-list li {
+    float: left;
+    padding: 0 26px;
+    border-right: 1px solid #FFFFFF;
+}
+.bottom-links-list li:last-child {
+    border-right: 0;
+}
+.bottom-links-list li a {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+.footer .bottom-links .copyright {
+    color: #FFFFFF;
+    font-size: 12px;
+    /* 最后一行 转换为行内块元素 即可自动换行 */
+    display: inline-block;
+    margin-top: 10px;
+}
+/* #endregion 页脚 end */
+
